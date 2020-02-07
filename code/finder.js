@@ -4,6 +4,7 @@
  * https://www.daniweb.com/programming/web-development/threads/113340/delete-all-rows-from-table-in-javascript
  * https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
  */
+import * as mjm from '../Iqra3/code/reader.js';
 // TODO: merciful ... bug :( 
 // أتقاكم show google thingy.
 /**
@@ -577,7 +578,14 @@ function serachedWordTable(word) {
     });
     menuFn();
     removeElementByID("postID")
-
+}
+function createRootTable(word,list){
+    submitData(word);
+    document.title = "finder - " + word;
+    wordNumber.innerText = list.length;
+    createTable([...list], word)
+    menuFn();
+    removeElementByID("postID")
 }
 
 function submitData(word, message = "no", email = "anon") {
@@ -682,8 +690,9 @@ function hashChanged() {
             arabic = h.replace(/%20/g, " ");
             break;
         case "r":
-            arabic = h.replace(/%20/g, " ");
-            break;
+            let list =  mjm.indexToArray(mjm.getIndicesOf(toArabic(arabic)))[1]
+            createRootTable(toArabic(arabic),list)
+            return;
         default:
             console.log(h)
             findAction('بسم الله')
@@ -1212,7 +1221,7 @@ function language(val) {
 
     }
     updateSettings("lang", val)
-    loadLang();
+    loadLang()
 }
 /**
  * Load langugae file and change the UI based on it,
@@ -1235,7 +1244,6 @@ function loadLang() {
     state2.labels[0].innerText = texts.arabic;
     state3.labels[0].innerText = texts.oneLine;
     btnArabic.innerText = texts.arabic;
-    langSpeechSettings()
         // btnOtherLang.innerText=texts.close; Had to move it inside loadTranF
     btnClose.innerText = texts.close;
     modelVoiceControl.innerText = texts.soundSettings;
