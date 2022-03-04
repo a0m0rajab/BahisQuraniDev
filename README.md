@@ -1,3 +1,9 @@
+# The project is Archived as the program that is resulted of the Bachelor Thesis work.
+#  you can access to the new project from: https://github.com/Okuyun/
+
+Side note: This repo was the development playground for the BahisQurani repo, as it was a fork of it. GitHub does not support this kind of forks, which it was done locally. 
+* * * * *
+
 # BahisQurani
 
 A simple mobile and user friendly quran reader.
